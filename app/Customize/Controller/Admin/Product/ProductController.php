@@ -291,7 +291,11 @@ class ProductController extends \Eccube\Controller\Admin\Product\ProductControll
             $ProductClass->setProductStock($ProductStock);
             $ProductStock->setProductClass($ProductClass);
         } else {
-            $Product = $this->productRepository->find($id);
+            $criteria = ['id' => $id];
+            if ($this->getMemberAuthority() == 1) {
+                $criteria['salon_cd'] = $this->getMemberSalonCd();
+            }
+            $Product = $this->productRepository->findOneBy($criteria);
             if (!$Product) {
                 throw new NotFoundHttpException();
             }
@@ -619,5 +623,13 @@ class ProductController extends \Eccube\Controller\Admin\Product\ProductControll
         /** @var User $user */
         $user = $this->entityManager->getRepository('Eccube\Entity\User')->findOneBy(['loginId' => $loginId]);
         return $user->getSalonCode();
+    }
+
+    public function getMemberAuthority()
+    {
+        $loginId = $this->getUser()->getUsername();
+        /** @var Member $member */
+        $member = $this->entityManager->getRepository('Eccube\Entity\Member')->findOneBy(['login_id' => $loginId]);
+        return $member->getAuthority()->getId();
     }
 }
