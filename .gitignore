@@ -8,7 +8,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 package-lock.json
-composer.lock
 .dockerignore
 docker-compose.debug.yml
 docker-compose.yml
