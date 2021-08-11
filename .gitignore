@@ -1,10 +1,5 @@
 .idea/*
 /node_modules
-/public/hot
-/public/fonts
-/public/storage
-/storage/*.key
-/vendor
 .env
 .env.backup
 .phpunit.result.cache
@@ -13,14 +8,8 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 package-lock.json
-/public/js
-/public/css
-/public/uploads
-/public/mix-manifest.json
 composer.lock
-/storage
 .dockerignore
 docker-compose.debug.yml
 docker-compose.yml
 .vscode
-/var
